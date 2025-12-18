@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mô phỏng Thuật toán Dijkstra - Đường bay rẻ nhất</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="header">
+    <h1>Mô phỏng Thuật toán Dijkstra</h1>
+    <p>Tìm đường bay rẻ nhất giữa các thành phố lớn trên thế giới</p>
+</div>
+
+<div class="search-container">
+    <div class="search-bar">
+        <div class="input-group">
+            <label>Từ</label>
+            <select id="start"></select>
+        </div>
+
+        <div class="arrow-icon">
+            →
+        </div>
+
+        <div class="input-group">
+            <label>Đến</label>
+            <select id="end"></select>
+        </div>
+
+        <div class="flight-type-group">
+            <label>
+                <input type="radio" name="flightType" value="all" checked>
+                Tất cả
+            </label>
+            <label>
+                <input type="radio" name="flightType" value="domestic">
+                Nội địa
+            </label>
+            <label>
+                <input type="radio" name="flightType" value="international">
+                Quốc tế
+            </label>
+        </div>
+
+        <button class="find-btn" onclick="findPath()">Tìm chuyến bay</button>
+    </div>
+
+    <div class="route-display" id="routeDisplay">
+        Từ <span id="fromCity">Ha Noi</span> → Đến <span id="toCity">Napoli</span>
+    </div>
+</div>
+
+<div id="map"></div>
+
+<!-- Nút In Hóa Đơn (Floating) -->
+<button class="print-bill-btn" id="printBillBtn" onclick="showBill()">In Hóa Đơn</button>
+
+<!-- Hóa Đơn Thanh Toán -->
+<div class="bill-container" id="billContainer">
+    <div class="bill">
+        <div class="bill-header">
+            <div class="bill-logo">✈️</div>
+            <div class="bill-info">
+                <h2>Hóa Đơn Chuyến Bay</h2>
+                <p id="flightTypeLabel">Chuyến bay</p>
+            </div>
+            <div class="bill-id">
+                <div>Mã: <strong id="billId">BAY-XXXXXX</strong></div>
+                <div>Ngày: <strong id="billDate">DD/MM/YYYY</strong></div>
+            </div>
+        </div>
+
+        <div class="bill-route">
+            <strong>Đường bay:</strong> <span id="route"></span>
+        </div>
+
+        <div class="bill-details">
+            <h3>Chi Tiết Các Chặng Bay</h3>
+            <div id="legs"></div>
+        </div>
+
+        <div class="bill-total">
+            <strong>Tổng chi phí:</strong>
+            <span id="totalCost">$0</span>
+        </div>
+
+        <button class="close-bill" onclick="closeBill()">Đóng hóa đơn</button>
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="data.js"></script>
+<script src="algorithm.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
